@@ -1,0 +1,13 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+    hibernate:
+      ddl-auto: create
+    database: postgresql
+  datasource:
+    username: scushiposhi
+    password: authentication
+    url: jdbc:postgresql://db:5432/db_authentication
+    driver-class-name: org.postgresql.Driver
