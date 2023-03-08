@@ -7,7 +7,6 @@ import com.scushiposhi.mssecurity.repo.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -20,7 +19,7 @@ public class UserDataLoader implements CommandLineRunner {
 
     private final AuthorityRepository authorityRepository;
     private final UserRepository userRepository;
-    private final PasswordEncoder encoder = new BCryptPasswordEncoder();
+    private final PasswordEncoder encoder;
 
     @Override
     public void run(String... args) {
