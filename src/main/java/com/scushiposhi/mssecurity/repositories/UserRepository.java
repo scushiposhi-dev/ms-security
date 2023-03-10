@@ -1,4 +1,4 @@
-package com.scushiposhi.mssecurity.repo;
+package com.scushiposhi.mssecurity.repositories;
 
 import com.scushiposhi.mssecurity.entities.User;
 import org.springframework.data.jpa.repository.JpaRepository;

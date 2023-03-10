@@ -1,0 +1,6 @@
+package restcontroller;
+
+class WineRestControllerTest{
+
+
+}

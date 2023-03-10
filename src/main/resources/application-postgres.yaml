@@ -11,3 +11,10 @@ spring:
     password: authentication
     url: jdbc:postgresql://db:5432/db_authentication
     driver-class-name: org.postgresql.Driver
+logging:
+  level:
+    org:
+      springframework:
+        web: DEBUG
+        security: debug
+      hibernate: ERROR
