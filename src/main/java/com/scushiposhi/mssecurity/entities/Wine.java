@@ -1,5 +1,6 @@
 package com.scushiposhi.mssecurity.entities;
 
+import com.scushiposhi.mssecurity.utils.EntityUtils.*;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,7 +14,14 @@ import java.time.YearMonth;
 @AllArgsConstructor
 public class Wine {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "seq_wine"
+    )
+    @SequenceGenerator(
+            name = "seq_wine",
+            allocationSize = 5
+    )
     private Long id;
 
     private String name;

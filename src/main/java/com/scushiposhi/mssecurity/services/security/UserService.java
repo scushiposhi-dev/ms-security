@@ -1,8 +1,8 @@
-package com.scushiposhi.mssecurity.security;
+package com.scushiposhi.mssecurity.services.security;
 
 import com.scushiposhi.mssecurity.entities.Authority;
 import com.scushiposhi.mssecurity.entities.User;
-import com.scushiposhi.mssecurity.repositories.UserRepository;
+import com.scushiposhi.mssecurity.repositories.security.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -40,7 +40,8 @@ public class UserService implements UserDetailsService {
 
     private Collection<? extends GrantedAuthority> convertToSpringGrantedAuthorities(Set<Authority> authorities) {
         Set<GrantedAuthority> collect = npeSafeStream(authorities)
-                .map(Authority::getRole)
+                .map(Authority::getPermission)
+                .map(Enum::name)
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toSet());
         return collect;

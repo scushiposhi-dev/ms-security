@@ -1,7 +1,7 @@
 package com.scushiposhi.mssecurity.config;
 
-import com.scushiposhi.mssecurity.security.CustomSecurityPasswordEncoder;
-import com.scushiposhi.mssecurity.security.UserService;
+import com.scushiposhi.mssecurity.services.security.CustomSecurityPasswordEncoder;
+import com.scushiposhi.mssecurity.services.security.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import static com.scushiposhi.mssecurity.security.CustomSecurityPasswordEncoder.EncodingEnum.BCRYPT;
+import static com.scushiposhi.mssecurity.services.security.CustomSecurityPasswordEncoder.EncodingEnum.BCRYPT;
 
 @Configuration
 @EnableWebSecurity

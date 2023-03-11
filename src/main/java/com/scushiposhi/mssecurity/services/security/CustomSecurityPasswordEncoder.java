@@ -1,4 +1,4 @@
-package com.scushiposhi.mssecurity.security;
+package com.scushiposhi.mssecurity.services.security;
 
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -11,7 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 
-import static com.scushiposhi.mssecurity.security.CustomSecurityPasswordEncoder.EncodingEnum.*;
+import static com.scushiposhi.mssecurity.services.security.CustomSecurityPasswordEncoder.EncodingEnum.*;
 
 public class CustomSecurityPasswordEncoder {
     public enum EncodingEnum{

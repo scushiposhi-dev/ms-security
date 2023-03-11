@@ -21,7 +21,6 @@ class WineRestControllerTest {
     WineService wineService;
     @Autowired
     WineRepository wineRepository;
-
     @Autowired
     WebApplicationContext wac;
 
@@ -39,7 +38,7 @@ class WineRestControllerTest {
 
         mockMvc
                 .perform(MockMvcRequestBuilders
-                        .get("http://localhost:8080/api/wines/8")
+                        .get("http://localhost:8080/wines/1")
                         .with(httpBasic("POLSI","123test123")))
                 .andExpect(status().isOk());
     }

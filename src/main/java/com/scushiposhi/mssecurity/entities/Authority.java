@@ -1,5 +1,6 @@
 package com.scushiposhi.mssecurity.entities;
 
+import com.scushiposhi.mssecurity.utils.EntityUtils.*;
 import lombok.*;
 
 import javax.persistence.*;
@@ -14,10 +15,19 @@ import java.util.Set;
 @Table(name = "authority")
 public class Authority {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "seq_authority"
+    )
+    @SequenceGenerator(
+            name = "seq_authority",
+            allocationSize = 5
+    )
     private Long id;
-    @Column
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private WineAuthoritiesEnum permission;
+
     @ManyToMany(mappedBy = "authorities")
-    Set<User> userSet;
+    private Set<Role> roles;
+
 }
