@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,5 +19,10 @@ public class WineService {
     public ResponseEntity<Wine> getWineById(Long wineId){
         Optional<Wine> byId = wineRepository.findById(wineId);
         return new ResponseEntity<>(byId.get(), HttpStatus.OK);
+    }
+
+    public ResponseEntity<List<Wine>> getWines() {
+        List<Wine> all = wineRepository.findAll();
+        return new ResponseEntity<>(all,HttpStatus.OK);
     }
 }

@@ -1,4 +1,4 @@
-package restcontroller;
+package com.scushiposhi.mssecurity.restcontroller;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

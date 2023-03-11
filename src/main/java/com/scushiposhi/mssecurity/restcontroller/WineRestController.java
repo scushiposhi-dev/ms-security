@@ -9,13 +9,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("api/wines")
 public class WineRestController {
     @Autowired
     private  WineService wineService;
-    @GetMapping(value = "/{wineId}", produces = "application/json")
+    @GetMapping(value = "/wines/{wineId}", produces = "application/json")
     public ResponseEntity<Wine> getWineById(@PathVariable(name = "wineId") Long wineId){
         return wineService.getWineById(wineId);
     }
+    @GetMapping(value = "/wines")
+    public ResponseEntity<List<Wine>> getWines(){
+        return wineService.getWines();
+    }
+
 }

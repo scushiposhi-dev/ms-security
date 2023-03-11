@@ -50,14 +50,30 @@ public class UserDataLoader implements CommandLineRunner {
 
     private void loadSecurityData() {
         // IF YOU WANT TO WORK WITH hasRole and hasAnyRole remember to chage the role adding prefix 'ROLE_'
-        Authority admin = authorityRepository.save(Authority.builder().role("ADMIN").build());
-        Authority devOps = authorityRepository.save(Authority.builder().role("DEVOPS").build());
-        Authority developer = authorityRepository.save(Authority.builder().role("DEVELOPER").build());
-        Authority customer = authorityRepository.save(Authority.builder().role("CUSTOMER").build());
+        Authority admin = authorityRepository.save(Authority.builder().role("ROLE_ADMIN").build());
+        Authority devOps = authorityRepository.save(Authority.builder().role("ROLE_DEVOPS").build());
+        Authority developer = authorityRepository.save(Authority.builder().role("ROLE_DEVELOPER").build());
+        Authority customer = authorityRepository.save(Authority.builder().role("ROLE_CUSTOMER").build());
+        Authority user = authorityRepository.save(Authority.builder().role("ROLE_USER").build());
 
-        User polsi = userRepository.save(User.builder().username("POLSI").password(encoder.encode("123test123")).authorities(Set.of(admin, developer, devOps)).build());
-        User luca = userRepository.save(User.builder().username("LUCA").password(encoder.encode("provaProvata")).authority(devOps).build());
-        User matteo = userRepository.save(User.builder().username("MATTEO").password(encoder.encode("prova123test123Provata")).authority(customer).build());
+        User polsi = userRepository.save(
+                User.builder()
+                        .username("POLSI")
+                        .password(encoder.encode("123test123"))
+                        .authorities(Set.of(admin, developer, devOps))
+                        .build());
+        User luca = userRepository.save(
+                User.builder().
+                        username("LUCA").
+                        password(encoder.encode("provaProvata"))
+                        .authorities(Set.of(customer,user))
+                        .build());
+        User matteo = userRepository.save(
+                User.builder().
+                        username("MATTEO")
+                        .password(encoder.encode("prova123test123Provata"))
+                        .authority(customer)
+                        .build());
 
         log.info("Authorities loaded:{}", authorityRepository.count());
         log.info("Users loaded:{}", userRepository.count());

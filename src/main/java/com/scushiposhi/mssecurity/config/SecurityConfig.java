@@ -5,7 +5,6 @@ import com.scushiposhi.mssecurity.security.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -27,11 +26,14 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.httpBasic(Customizer.withDefaults())//.csrf().disable()
-//                .authorizeRequests(auth->auth.anyRequest().authenticated());
-                .authorizeHttpRequests((authz) -> authz.antMatchers("/wines/**").hasAnyAuthority("DEVELOPER"));
-              //  .authorizeHttpRequests((authz) -> authz.antMatchers("/wines/**").hasAnyRole("DEVELOPER"));// it inserts the prefix ROLE_
-        return http.build();
+        http//httpBasic(Customizer.withDefaults())//.csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/admin").hasRole("ADMIN")
+                .antMatchers("/user").hasRole("USER")
+                .antMatchers("/wines**").hasAnyRole("ADMIN","DEVELOPER")
+                .antMatchers("/").permitAll()
+                .and().formLogin();
+               return http.build();
     }
 
 }
