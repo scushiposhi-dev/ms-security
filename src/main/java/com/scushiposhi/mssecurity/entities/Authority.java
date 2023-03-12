@@ -1,6 +1,6 @@
 package com.scushiposhi.mssecurity.entities;
 
-import com.scushiposhi.mssecurity.utils.EntityUtils.*;
+import com.scushiposhi.mssecurity.utils.EntityUtils.WineAuthoritiesEnum;
 import lombok.*;
 
 import javax.persistence.*;
