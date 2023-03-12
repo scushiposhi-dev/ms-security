@@ -15,6 +15,8 @@ public class EntityUtils {
         WINE_READ,
         WINE_CREATE,
         WINE_UPDATE,
-        WINE_DELETE
+        WINE_DELETE,
+        USER_PAGE_READ,
+        ADMIN_PAGE_READ;
     }
 }

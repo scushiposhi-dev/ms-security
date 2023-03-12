@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 import static com.scushiposhi.mssecurity.services.security.CustomSecurityPasswordEncoder.EncodingEnum.BCRYPT;
+import static com.scushiposhi.mssecurity.utils.EntityUtils.WineAuthoritiesEnum.*;
 
 @Configuration
 @EnableWebSecurity
@@ -28,9 +29,9 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http//httpBasic(Customizer.withDefaults())//.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/user").hasRole("USER")
-                .antMatchers("/wines**").hasAnyRole("ADMIN","DEVELOPER")
+                .antMatchers("/admin").hasAuthority(ADMIN_PAGE_READ.name())
+                .antMatchers("/user").hasAuthority(USER_PAGE_READ.name())
+                .antMatchers("/wines**").hasAuthority(WINE_READ.name())
                 .antMatchers("/").permitAll()
                 .and().formLogin();
                return http.build();

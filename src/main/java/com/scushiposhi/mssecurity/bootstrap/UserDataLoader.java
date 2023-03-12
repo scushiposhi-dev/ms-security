@@ -60,6 +60,8 @@ public class UserDataLoader implements CommandLineRunner {
         Authority createWine = authorityRepository.save(Authority.builder().permission(WINE_CREATE).build());
         Authority updateWine = authorityRepository.save(Authority.builder().permission(WINE_UPDATE).build());
         Authority deleteWine = authorityRepository.save(Authority.builder().permission(WINE_DELETE).build());
+        Authority userPageRead = authorityRepository.save(Authority.builder().permission(USER_PAGE_READ).build());
+        Authority adminPageRead = authorityRepository.save(Authority.builder().permission(ADMIN_PAGE_READ).build());
 
         Role adminRole = roleRepository.save(Role.builder()
                 .name(ROLE_ADMIN).build());
@@ -72,11 +74,11 @@ public class UserDataLoader implements CommandLineRunner {
         Role customerRole = roleRepository.save(Role.builder()
                 .name(ROLE_CUSTOMER).build());
 
-        adminRole.setAuthorities(Set.of(readWine,createWine,updateWine,deleteWine));
+        adminRole.setAuthorities(Set.of(readWine,createWine,updateWine,deleteWine,adminPageRead));
         devOpsRole.setAuthorities(Set.of(readWine));
         developerRole.setAuthorities(Set.of(readWine,createWine,updateWine,deleteWine));
-        testerRole.setAuthorities(Set.of(readWine,updateWine));
-        customerRole.setAuthorities(Set.of(readWine));
+        testerRole.setAuthorities(Set.of(readWine,updateWine,userPageRead));
+        customerRole.setAuthorities(Set.of(readWine,userPageRead));
         roleRepository.saveAll(Set.of(adminRole,developerRole,devOpsRole,testerRole,customerRole));
 
         User polsi = userRepository.save(

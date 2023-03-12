@@ -19,7 +19,7 @@ public class WineRestController {
     public ResponseEntity<Wine> getWineById(@PathVariable(name = "wineId") Long wineId){
         return wineService.getWineById(wineId);
     }
-    @GetMapping(value = "/wines")
+    @GetMapping(value = "/wines",produces = "application/json")
     public ResponseEntity<List<Wine>> getWines(){
         return wineService.getWines();
     }
