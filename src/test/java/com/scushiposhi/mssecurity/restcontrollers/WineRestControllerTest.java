@@ -1,14 +1,18 @@
-package com.scushiposhi.mssecurity.restcontroller;
+package com.scushiposhi.mssecurity.restcontrollers;
 
+import com.scushiposhi.mssecurity.model.AuthenticationRequest;
 import com.scushiposhi.mssecurity.repositories.WineRepository;
 import com.scushiposhi.mssecurity.services.WineService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.context.WebApplicationContext;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.httpBasic;
@@ -38,8 +42,11 @@ class WineRestControllerTest {
 
         mockMvc
                 .perform(MockMvcRequestBuilders
-                        .get("http://localhost:8080/wines/1")
-                        .with(httpBasic("POLSI","123test123")))
+                        .post("http://localhost:8080/authenticate")
+                                .content("{ \"username\": \"POLSI\",\n" +
+                                        "    \"password\": \"123test123\"}")
+                        .contentType(MediaType.APPLICATION_JSON_VALUE)
+                        .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk());
     }
 }

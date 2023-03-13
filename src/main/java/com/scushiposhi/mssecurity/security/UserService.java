@@ -1,4 +1,4 @@
-package com.scushiposhi.mssecurity.services.security;
+package com.scushiposhi.mssecurity.security;
 
 import com.scushiposhi.mssecurity.entities.Authority;
 import com.scushiposhi.mssecurity.entities.User;
